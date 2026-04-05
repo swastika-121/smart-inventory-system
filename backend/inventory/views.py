@@ -28,9 +28,31 @@ class OrderViewSet(viewsets.ModelViewSet):
         product.save()
 
 
-# 🔔 LOW STOCK ALERT API
+# LOW STOCK ALERT API
 @api_view(['GET'])
 def low_stock_products(request):
     products = Product.objects.filter(quantity__lt=10)
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
+
+
+# DASHBOARD ANALYTICS API
+@api_view(['GET'])
+def dashboard_data(request):
+    total_products = Product.objects.count()
+    total_orders = Order.objects.count()
+    low_stock = Product.objects.filter(quantity__lt=10).count()
+
+    total_value = 0
+    products = Product.objects.all()
+    for p in products:
+        total_value += p.price * p.quantity
+
+    data = {
+        "total_products": total_products,
+        "total_orders": total_orders,
+        "low_stock_items": low_stock,
+        "total_inventory_value": total_value
+    }
+
+    return Response(data)
