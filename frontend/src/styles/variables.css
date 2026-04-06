@@ -1,0 +1,51 @@
+:root {
+  /* Backgrounds */
+  --bg0: #05080F;
+  --bg1: #090E1A;
+  --bg2: #0D1526;
+  --card: #111E33;
+  --card2: #152236;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.07);
+  --border2: rgba(255, 255, 255, 0.13);
+
+  /* Brand Colors */
+  --amber: #F5A623;
+  --amber-bright: #FCD34D;
+  --amber-glow: rgba(245, 166, 35, 0.18);
+  --amber-dim: #8B5E12;
+
+  --teal: #00D4AA;
+  --teal-glow: rgba(0, 212, 170, 0.15);
+
+  --red: #FF4D6D;
+  --red-glow: rgba(255, 77, 109, 0.15);
+
+  --purple: #8B7CF8;
+  --purple-glow: rgba(139, 124, 248, 0.15);
+
+  --blue: #4DA6FF;
+  --blue-glow: rgba(77, 166, 255, 0.15);
+
+  /* Text */
+  --text1: #EEF2FF;
+  --text2: #7A90B8;
+  --text3: #3A4E6A;
+
+  /* Layout */
+  --sidebar-w: 252px;
+  --topbar-h: 64px;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  /* Typography */
+  --ff-head: 'Syne', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+  --ff-body: 'DM Sans', sans-serif;
+
+  /* Transitions */
+  --transition: all 0.18s ease;
+}

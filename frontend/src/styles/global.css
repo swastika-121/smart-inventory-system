@@ -1,0 +1,111 @@
+@import './variables.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg0);
+  color: var(--text1);
+  font-family: var(--ff-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--ff-body); }
+input, select, textarea { font-family: var(--ff-body); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg1); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+.animate-in  { animation: fadeUp 0.4s ease both; }
+.animate-in2 { animation: fadeUp 0.4s ease 0.1s both; }
+.animate-in3 { animation: fadeUp 0.4s ease 0.2s both; }
+
+/* Page Layout */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-area {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  padding: 32px;
+  flex: 1;
+}
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-title {
+  font-family: var(--ff-head);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.page-desc {
+  font-size: 14px;
+  color: var(--text2);
+  margin-top: 4px;
+}
+
+/* Grid helpers */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+@media (max-width: 1200px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .main-area { margin-left: 0; }
+}
+@media (max-width: 600px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .page-content { padding: 20px; }
+}
