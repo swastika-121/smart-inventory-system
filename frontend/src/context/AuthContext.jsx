@@ -33,12 +33,17 @@ export function AuthProvider({ children }) {
   }, []);
 
   const register = useCallback(async (payload) => {
-    setError(null);
+  setError(null);
+  try {
     const u = await authService.register(payload);
     setUser(u);
     return u;
-  }, []);
-
+  } catch (err) {
+    console.log("REGISTER ERROR 👉", err.response?.data || err.message);
+    setError(err.response?.data || "Registration failed");
+    throw err;
+  }
+}, []);
   const logout = useCallback(async () => {
     await authService.logout();
     setUser(null);

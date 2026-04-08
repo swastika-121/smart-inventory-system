@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-import Button  from '../components/ui/Button';
-import Icons   from '../components/common/Icons';
+import Button from '../components/ui/Button';
+import Icons from '../components/common/Icons';
 
 const LOGS = [
-  { id:1,  user:'alex.c',  action:'CREATE', resource:'Product',  detail:'Added "Wireless Headphones Pro" (SKU-001)',   ip:'192.168.1.10', time:'2024-12-01 09:14:22' },
-  { id:2,  user:'priya.s', action:'UPDATE', resource:'Product',  detail:'Updated stock: SKU-002 from 20 → 12 units',   ip:'192.168.1.12', time:'2024-12-01 10:32:05' },
-  { id:3,  user:'System',  action:'ALERT',  resource:'Alert',    detail:'Low stock alert triggered for SKU-002',        ip:'127.0.0.1',    time:'2024-12-01 10:32:06' },
-  { id:4,  user:'alex.c',  action:'DELETE', resource:'Product',  detail:'Deleted product "Broken SKU Test" (SKU-099)',   ip:'192.168.1.10', time:'2024-12-01 11:05:44' },
-  { id:5,  user:'jake.m',  action:'EXPORT', resource:'Report',   detail:'Exported inventory CSV (2847 rows)',           ip:'192.168.1.15', time:'2024-12-01 13:20:18' },
-  { id:6,  user:'priya.s', action:'UPDATE', resource:'Warehouse',detail:'Updated WH-Beta capacity from 3000 → 3500',   ip:'192.168.1.12', time:'2024-12-02 08:48:30' },
-  { id:7,  user:'System',  action:'ALERT',  resource:'Alert',    detail:'Out of stock alert triggered for SKU-003',     ip:'127.0.0.1',    time:'2024-12-02 09:00:01' },
-  { id:8,  user:'alex.c',  action:'RESOLVE',resource:'Alert',    detail:'Resolved out-of-stock alert #7 for SKU-003',   ip:'192.168.1.10', time:'2024-12-02 09:30:55' },
-  { id:9,  user:'jake.m',  action:'CREATE', resource:'User',     detail:'Created new staff account "sam@acme.com"',     ip:'192.168.1.15', time:'2024-12-02 11:10:00' },
-  { id:10, user:'alex.c',  action:'UPDATE', resource:'Product',  detail:'Bulk stock in: 5 products updated (+50 avg)',  ip:'192.168.1.10', time:'2024-12-03 14:05:22' },
+  { id: 1, user: 'alex.c', action: 'CREATE', resource: 'Product', detail: 'Added "Wireless Headphones Pro" (SKU-001)', ip: '192.168.1.10', time: '2024-12-01 09:14:22' },
+  { id: 2, user: 'priya.s', action: 'UPDATE', resource: 'Product', detail: 'Updated stock: SKU-002 from 20 → 12 units', ip: '192.168.1.12', time: '2024-12-01 10:32:05' },
+  { id: 3, user: 'System', action: 'ALERT', resource: 'Alert', detail: 'Low stock alert triggered for SKU-002', ip: '127.0.0.1', time: '2024-12-01 10:32:06' },
+  { id: 4, user: 'alex.c', action: 'DELETE', resource: 'Product', detail: 'Deleted product "Broken SKU Test" (SKU-099)', ip: '192.168.1.10', time: '2024-12-01 11:05:44' },
+  { id: 5, user: 'jake.m', action: 'EXPORT', resource: 'Report', detail: 'Exported inventory CSV (2847 rows)', ip: '192.168.1.15', time: '2024-12-01 13:20:18' },
+  { id: 6, user: 'priya.s', action: 'UPDATE', resource: 'Warehouse', detail: 'Updated WH-Beta capacity from 3000 → 3500', ip: '192.168.1.12', time: '2024-12-02 08:48:30' },
+  { id: 7, user: 'System', action: 'ALERT', resource: 'Alert', detail: 'Out of stock alert triggered for SKU-003', ip: '127.0.0.1', time: '2024-12-02 09:00:01' },
+  { id: 8, user: 'alex.c', action: 'RESOLVE', resource: 'Alert', detail: 'Resolved out-of-stock alert #7 for SKU-003', ip: '192.168.1.10', time: '2024-12-02 09:30:55' },
+  { id: 9, user: 'jake.m', action: 'CREATE', resource: 'User', detail: 'Created new staff account "sam@acme.com"', ip: '192.168.1.15', time: '2024-12-02 11:10:00' },
+  { id: 10, user: 'alex.c', action: 'UPDATE', resource: 'Product', detail: 'Bulk stock in: 5 products updated (+50 avg)', ip: '192.168.1.10', time: '2024-12-03 14:05:22' },
 ];
 
 const ACTION_STYLE = {
-  CREATE:  { bg: 'var(--teal-glow)',   color: 'var(--teal)'   },
-  UPDATE:  { bg: 'var(--amber-glow)',  color: 'var(--amber)'  },
-  DELETE:  { bg: 'var(--red-glow)',    color: 'var(--red)'    },
-  ALERT:   { bg: 'var(--red-glow)',    color: 'var(--red)'    },
-  EXPORT:  { bg: 'var(--purple-glow)', color: 'var(--purple)' },
-  RESOLVE: { bg: 'var(--teal-glow)',   color: 'var(--teal)'   },
+  CREATE: { bg: 'var(--teal-glow)', color: 'var(--teal)' },
+  UPDATE: { bg: 'var(--amber-glow)', color: 'var(--amber)' },
+  DELETE: { bg: 'var(--red-glow)', color: 'var(--red)' },
+  ALERT: { bg: 'var(--red-glow)', color: 'var(--red)' },
+  EXPORT: { bg: 'var(--purple-glow)', color: 'var(--purple)' },
+  RESOLVE: { bg: 'var(--teal-glow)', color: 'var(--teal)' },
 };
 
 export default function AuditLog() {

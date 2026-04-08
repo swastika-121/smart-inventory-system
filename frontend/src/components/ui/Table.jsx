@@ -1,7 +1,7 @@
 import React from 'react';
-import { TableLoader } from '../../common/Loader';
-import EmptyState from '../../common/EmptyState';
-import Icons from '../../common/Icons';
+import { TableLoader } from '../common/Loader';
+import EmptyState from '../common/EmptyState';
+import Icons from '../common/Icons';
 
 /**
  * columns: Array of { key, label, render?, width?, align? }

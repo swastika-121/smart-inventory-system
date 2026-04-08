@@ -1,15 +1,15 @@
 import React from 'react';
 import ThroughputChart from '../components/charts/ThroughputChart';
-import WarehouseChart  from '../components/charts/WarehouseChart';
+import WarehouseChart from '../components/charts/WarehouseChart';
 import RevenueTrendChart from '../components/charts/RevenueTrendChart';
 import StockMovementChart from '../components/charts/StockMovementChart';
 import '../styles/components/charts.css';
 
 const KPI_CARDS = [
-  { label: 'Best Seller',    name: 'Wireless Headphones', val: '145 units sold',  color: 'var(--amber)'  },
-  { label: 'Fastest Mover', name: 'USB-C Hub',            val: '320→280 in 3d',  color: 'var(--teal)'   },
-  { label: 'Needs Reorder', name: 'Air Purifier HEPA',    val: '8 units left',   color: 'var(--red)'    },
-  { label: 'Top Value SKU', name: 'Standing Desk',        val: '$16,626 on hand', color: 'var(--purple)' },
+  { label: 'Best Seller', name: 'Wireless Headphones', val: '145 units sold', color: 'var(--amber)' },
+  { label: 'Fastest Mover', name: 'USB-C Hub', val: '320→280 in 3d', color: 'var(--teal)' },
+  { label: 'Needs Reorder', name: 'Air Purifier HEPA', val: '8 units left', color: 'var(--red)' },
+  { label: 'Top Value SKU', name: 'Standing Desk', val: '$16,626 on hand', color: 'var(--purple)' },
 ];
 
 export default function Analytics() {

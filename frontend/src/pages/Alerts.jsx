@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-import { useAlerts }  from '../hooks/useAlerts';
-import AlertCard      from '../components/ui/AlertCard';
-import Button         from '../components/ui/Button';
-import EmptyState     from '../components/common/EmptyState';
+import { useAlerts } from '../hooks/useAlerts';
+import AlertCard from '../components/ui/AlertCard';
+import Button from '../components/ui/Button';
+import EmptyState from '../components/common/EmptyState';
 import { CardSkeleton } from '../components/common/Loader';
-import Icons          from '../components/common/Icons';
+import Icons from '../components/common/Icons';
 
 /* Fallback mock alerts */
 const MOCK_ALERTS = [
-  { id:1, level:'critical', title:'Out of Stock Alert',    product:'Industrial Water Filter', msg:'Stock depleted. Last reorder was 42 days ago. Action required.',         sku:'SKU-003', warehouse:'WH-Alpha', time:'18 min ago', resolved:false },
-  { id:2, level:'critical', title:'Out of Stock Alert',    product:'Laptop Cooling Pad',      msg:'Zero units available across all warehouses. Urgent reorder needed.',      sku:'SKU-008', warehouse:'WH-Beta',  time:'Yesterday',  resolved:false },
-  { id:3, level:'warning',  title:'Low Stock Warning',     product:'Ergonomic Office Chair',  msg:'Only 12 units remaining — below minimum threshold of 20 units.',          sku:'SKU-002', warehouse:'WH-Beta',  time:'2 min ago',  resolved:false },
-  { id:4, level:'warning',  title:'Low Stock Warning',     product:'Air Purifier HEPA',       msg:'Only 8 units remaining — 47% below reorder point.',                       sku:'SKU-006', warehouse:'WH-Alpha', time:'1 hr ago',   resolved:false },
-  { id:5, level:'warning',  title:'Low Stock Warning',     product:'Storage Ottoman XL',      msg:'Only 5 units left in WH-Gamma. Transfer from WH-Alpha recommended.',      sku:'SKU-010', warehouse:'WH-Gamma', time:'5 hr ago',   resolved:false },
-  { id:6, level:'info',     title:'Overstock Detection',   product:'USB-C Hub 10-Port',       msg:'320 units on hand — 10× above minimum. Consider redistribution.',         sku:'SKU-004', warehouse:'WH-Gamma', time:'3 hr ago',   resolved:false },
+  { id: 1, level: 'critical', title: 'Out of Stock Alert', product: 'Industrial Water Filter', msg: 'Stock depleted. Last reorder was 42 days ago. Action required.', sku: 'SKU-003', warehouse: 'WH-Alpha', time: '18 min ago', resolved: false },
+  { id: 2, level: 'critical', title: 'Out of Stock Alert', product: 'Laptop Cooling Pad', msg: 'Zero units available across all warehouses. Urgent reorder needed.', sku: 'SKU-008', warehouse: 'WH-Beta', time: 'Yesterday', resolved: false },
+  { id: 3, level: 'warning', title: 'Low Stock Warning', product: 'Ergonomic Office Chair', msg: 'Only 12 units remaining — below minimum threshold of 20 units.', sku: 'SKU-002', warehouse: 'WH-Beta', time: '2 min ago', resolved: false },
+  { id: 4, level: 'warning', title: 'Low Stock Warning', product: 'Air Purifier HEPA', msg: 'Only 8 units remaining — 47% below reorder point.', sku: 'SKU-006', warehouse: 'WH-Alpha', time: '1 hr ago', resolved: false },
+  { id: 5, level: 'warning', title: 'Low Stock Warning', product: 'Storage Ottoman XL', msg: 'Only 5 units left in WH-Gamma. Transfer from WH-Alpha recommended.', sku: 'SKU-010', warehouse: 'WH-Gamma', time: '5 hr ago', resolved: false },
+  { id: 6, level: 'info', title: 'Overstock Detection', product: 'USB-C Hub 10-Port', msg: '320 units on hand — 10× above minimum. Consider redistribution.', sku: 'SKU-004', warehouse: 'WH-Gamma', time: '3 hr ago', resolved: false },
 ];
 
 const FILTER_TABS = [
-  { key: 'all',      label: 'All Alerts' },
-  { key: 'critical', label: 'Critical'   },
-  { key: 'warning',  label: 'Warnings'   },
-  { key: 'info',     label: 'Overstock'  },
-  { key: 'resolved', label: 'Resolved'   },
+  { key: 'all', label: 'All Alerts' },
+  { key: 'critical', label: 'Critical' },
+  { key: 'warning', label: 'Warnings' },
+  { key: 'info', label: 'Overstock' },
+  { key: 'resolved', label: 'Resolved' },
 ];
 
 export default function Alerts() {
@@ -33,16 +33,16 @@ export default function Alerts() {
   const displayAlerts = alerts.length ? alerts : localAlerts;
 
   const filtered = displayAlerts.filter((a) => {
-    if (activeFilter === 'all')      return !a.resolved;
+    if (activeFilter === 'all') return !a.resolved;
     if (activeFilter === 'resolved') return a.resolved;
     return a.level === activeFilter && !a.resolved;
   });
 
   const counts = {
-    all:      displayAlerts.filter((a) => !a.resolved).length,
+    all: displayAlerts.filter((a) => !a.resolved).length,
     critical: displayAlerts.filter((a) => a.level === 'critical' && !a.resolved).length,
-    warning:  displayAlerts.filter((a) => a.level === 'warning'  && !a.resolved).length,
-    info:     displayAlerts.filter((a) => a.level === 'info'     && !a.resolved).length,
+    warning: displayAlerts.filter((a) => a.level === 'warning' && !a.resolved).length,
+    info: displayAlerts.filter((a) => a.level === 'info' && !a.resolved).length,
     resolved: displayAlerts.filter((a) => a.resolved).length,
   };
 

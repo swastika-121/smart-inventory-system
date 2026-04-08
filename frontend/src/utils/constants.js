@@ -1,4 +1,4 @@
-export const APP_NAME = process.env.REACT_APP_APP_NAME || 'StockSense';
+const API_URL = import.meta.env.VITE_API_URL || 'StockSense';
 
 /* ── Status ── */
 export const STOCK_STATUS = {

@@ -63,3 +63,9 @@ export const validateUserForm = (data) => {
 /* ── Generic form helpers ── */
 export const hasErrors  = (errors) => Object.values(errors).some(Boolean);
 export const firstError = (errors) => Object.values(errors).find(Boolean) || null;
+
+export const generateSKU = (name = '') => {
+  const prefix = name.slice(0, 3).toUpperCase() || 'PRD';
+  const random = Math.floor(1000 + Math.random() * 9000);
+  return `${prefix}-${random}`;
+};

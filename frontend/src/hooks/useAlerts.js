@@ -33,7 +33,6 @@ export function useAlerts() {
   const remove = useCallback(async (id) => {
     await alertService.deleteAlert(id);
     setAlerts((prev) => prev.filter((a) => a.id !== id));
-    setTotalCount((c) => c - 1);
   }, []);
 
   return { alerts, summary, loading, error, fetch, resolve, remove };

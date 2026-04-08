@@ -23,9 +23,9 @@ export const authService = {
     try {
       const refresh = localStorage.getItem('refresh_token');
       await api.post(ENDPOINTS.LOGOUT, { refresh });
-    } catch (_) {
-      // ignore errors on logout
-    } finally {
+    } catch (err) {
+  console.log("AUTH ERROR:", err); 
+}finally {
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
     }

@@ -1,30 +1,30 @@
 import React, { useEffect } from 'react';
 import { useInventory } from '../context/InventoryContext';
-import StatCard           from '../components/ui/StatCard';
+import StatCard from '../components/ui/StatCard';
 import StockMovementChart from '../components/charts/StockMovementChart';
-import StockStatusChart   from '../components/charts/StockStatusChart';
-import TopProductsChart   from '../components/charts/TopProductsChart';
-import RevenueTrendChart  from '../components/charts/RevenueTrendChart';
-import { StatusBadge }    from '../components/ui/Badge';
-import { CardSkeleton }   from '../components/common/Loader';
-import Icons              from '../components/common/Icons';
+import StockStatusChart from '../components/charts/StockStatusChart';
+import TopProductsChart from '../components/charts/TopProductsChart';
+import RevenueTrendChart from '../components/charts/RevenueTrendChart';
+import { StatusBadge } from '../components/ui/Badge';
+import { CardSkeleton } from '../components/common/Loader';
+import Icons from '../components/common/Icons';
 import { formatRelativeTime, formatCurrencyShort } from '../utils/formatters';
 import '../styles/components/charts.css';
 
 /* ── Fallback stats (replaced by API data when connected) ── */
 const FALLBACK_STATS = [
-  { label: 'Total Products', value: '2,847', change: '+12 this week', changeUp: true,  color: 'amber',  iconKey: 'box'      },
-  { label: 'In Stock Value', value: '$284K',  change: '+8.2% vs last mo.', changeUp: true,  color: 'teal',   iconKey: 'dollar'   },
-  { label: 'Active Alerts',  value: '6',      change: '2 critical',        changeUp: false, color: 'red',    iconKey: 'bell'     },
-  { label: 'Warehouses',     value: '3',      change: 'Alpha · Beta · Gamma', changeUp: true, color: 'purple', iconKey: 'warehouse' },
+  { label: 'Total Products', value: '2,847', change: '+12 this week', changeUp: true, color: 'amber', iconKey: 'box' },
+  { label: 'In Stock Value', value: '$284K', change: '+8.2% vs last mo.', changeUp: true, color: 'teal', iconKey: 'dollar' },
+  { label: 'Active Alerts', value: '6', change: '2 critical', changeUp: false, color: 'red', iconKey: 'bell' },
+  { label: 'Warehouses', value: '3', change: 'Alpha · Beta · Gamma', changeUp: true, color: 'purple', iconKey: 'warehouse' },
 ];
 
 const RECENT_ACTIVITY = [
-  { sku: 'SKU-001', name: 'Wireless Headphones Pro', action: 'Stock In',  qty: '+50', color: 'teal',  user: 'alex.c',  warehouse: 'WH-Alpha', time: '2 min ago'  },
-  { sku: 'SKU-007', name: 'Mechanical Keyboard',     action: 'Stock Out', qty: '−18', color: 'red',   user: 'priya.s', warehouse: 'WH-Gamma', time: '14 min ago' },
-  { sku: 'SKU-005', name: 'Standing Desk Frame',     action: 'Transfer',  qty: '+12', color: 'amber', user: 'alex.c',  warehouse: 'WH-Beta',  time: '1 hr ago'   },
-  { sku: 'SKU-009', name: 'Smart LED Desk Lamp',     action: 'Stock In',  qty: '+30', color: 'teal',  user: 'jake.m',  warehouse: 'WH-Alpha', time: '2 hr ago'   },
-  { sku: 'SKU-002', name: 'Ergonomic Office Chair',  action: 'Low Stock', qty: '⚠ 12', color: 'amber', user: 'System', warehouse: 'WH-Beta',  time: '3 hr ago'   },
+  { sku: 'SKU-001', name: 'Wireless Headphones Pro', action: 'Stock In', qty: '+50', color: 'teal', user: 'alex.c', warehouse: 'WH-Alpha', time: '2 min ago' },
+  { sku: 'SKU-007', name: 'Mechanical Keyboard', action: 'Stock Out', qty: '−18', color: 'red', user: 'priya.s', warehouse: 'WH-Gamma', time: '14 min ago' },
+  { sku: 'SKU-005', name: 'Standing Desk Frame', action: 'Transfer', qty: '+12', color: 'amber', user: 'alex.c', warehouse: 'WH-Beta', time: '1 hr ago' },
+  { sku: 'SKU-009', name: 'Smart LED Desk Lamp', action: 'Stock In', qty: '+30', color: 'teal', user: 'jake.m', warehouse: 'WH-Alpha', time: '2 hr ago' },
+  { sku: 'SKU-002', name: 'Ergonomic Office Chair', action: 'Low Stock', qty: '⚠ 12', color: 'amber', user: 'System', warehouse: 'WH-Beta', time: '3 hr ago' },
 ];
 
 export default function Dashboard() {
@@ -35,8 +35,8 @@ export default function Dashboard() {
   const displayStats = stats ? [
     { label: 'Total Products', value: stats.total_products?.toLocaleString() || '—', change: stats.products_change, changeUp: true, color: 'amber', iconKey: 'box' },
     { label: 'In Stock Value', value: formatCurrencyShort(stats.total_value || 0), change: stats.value_change, changeUp: true, color: 'teal', iconKey: 'dollar' },
-    { label: 'Active Alerts',  value: String(stats.active_alerts || 0), change: `${stats.critical_alerts || 0} critical`, changeUp: false, color: 'red', iconKey: 'bell' },
-    { label: 'Warehouses',     value: String(stats.warehouse_count || 3), change: 'Alpha · Beta · Gamma', changeUp: true, color: 'purple', iconKey: 'warehouse' },
+    { label: 'Active Alerts', value: String(stats.active_alerts || 0), change: `${stats.critical_alerts || 0} critical`, changeUp: false, color: 'red', iconKey: 'bell' },
+    { label: 'Warehouses', value: String(stats.warehouse_count || 3), change: 'Alpha · Beta · Gamma', changeUp: true, color: 'purple', iconKey: 'warehouse' },
   ] : FALLBACK_STATS;
 
   return (
